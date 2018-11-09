@@ -1,0 +1,287 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-05-04, 13:19:50
+    Author     : HP
+*/
+
+/* 
+    Definicje czcionek
+*/
+
+@font-face {
+    font-family: 'ubuntu-bold';
+    src: url('fonts/ubuntu_bold.ttf');
+}
+
+@font-face {
+    font-family: 'ubuntu-light';
+    src: url('fonts/ubuntu_light.ttf');
+}
+
+/* 
+    Reset i body
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'ubuntu-light';
+    /*background-color: #446FB3;*/
+    /*background-color: #2A6041;*/
+    background-color: #01172F;
+    height: 100vh;
+    color: white;
+}
+
+h3 {
+    font-family: 'ubuntu-bold';
+    text-align: center;
+    /*background-color: #18191c;*/
+    /*background-color: #193d28;*/
+    background-color: #01172F;
+    padding: 7px 0;
+    margin-bottom: 10px;
+}
+
+div#main-container {
+    width: 70%;
+    margin-left: 15%;
+    /*background-color: #35383E;*/
+    /*background-color: #28965A;*/
+    background-color: #446DF6;
+    min-height: 100%;
+    border-left: 4px white solid;
+    border-right: 4px white solid;
+    -webkit-box-shadow: 0px 0px 72px 0px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 0px 72px 0px rgba(255,255,255,1);
+    box-shadow: 0px 0px 72px 0px rgba(255,255,255,1);
+}
+
+/* 
+    Nagłówek
+*/
+
+div#main-container header {
+    width: 100%;
+    text-align: center;
+    font-family: 'ubuntu-bold';
+    font-size: 2em;
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: white 2px solid;
+    background-color: #0c1635;
+}
+
+div#main-container header:hover {
+    cursor: pointer;
+    color: white;
+    transition: all ease-in .2s;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    /*background-color: #4e535b;*/
+    background-color: #182a66;
+    border-radius: 8px;
+    color: white;
+    font-family: "Lucida Console", Monaco, monospace;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+div#probs_codes_container,
+div#data_container,
+div#encoded_data_container,
+div#data_container2,
+div#stats_container {
+    width: 80%;
+    margin-left: 10%;
+}
+
+div#probs_codes_container,
+div#data_container2,
+div#encoded_data_container,
+div#stats_container {
+    margin-bottom: 20px;
+}
+
+div#encoded_data_container span {
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+div#probs_codes_container table {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.column-1 {
+    width: 27.5%;
+}
+
+.column-2 {
+    width: 45%;
+}
+
+.column-3 {
+    width: 27.5%;
+}
+
+div#probs_codes_container table thead tr th {
+    font-family: 'ubuntu-bold';
+    /*background-color: #18191c;*/
+    /*background-color: #193d28;*/
+    background-color: #182a66;
+    padding: 10px 0;
+    font-size: 0.85em;
+}
+
+div#probs_codes_container table thead tr th:hover {
+    cursor: pointer;
+    background-color: #01172F;
+    transition: all .2s ease-in;
+}
+
+.sortorder:after {
+  content: '\25b2';
+}
+.sortorder.reverse:after {
+  content: '\25bc';
+}
+
+div#probs_codes_container table tbody tr td {
+    text-align: center;
+    /*background-color: #25262b;*/
+    opacity: 0.8;
+    padding: 3px 0;
+}
+
+div#probs_codes_container table tbody tr td.sign {
+    background-color: #01172F;
+}
+
+div#probs_codes_container table tbody tr td.number {
+    background-color: #022d01;
+}
+
+div#probs_codes_container table tbody tr td.code {
+    background-color: #2d0101;
+}
+
+div#probs_codes_container table tbody tr:hover td {
+    opacity: 1;
+    cursor: pointer;
+    transition: all .1s ease-in;
+}
+
+div#probs_codes_container table tbody tr.active-row td {
+    opacity: 1;
+}
+
+span {
+    transition: ease-in all .2s;
+}
+
+div#data_container2 span {
+    font-family: "Lucida Console", Monaco, monospace;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+div#data_container2 span span.active {
+    background-color: #01172F;
+    transition: ease-in all .2s;
+}
+
+div#encoded_data_container span span.active {
+    background-color: #2d0101;
+    transition: ease-in all .2s;
+}
+
+div#stats_container table {
+    width: 60%;
+    margin-left: 20%;
+}
+
+#params_table tr td:first-child {
+    background-color: #182a66;
+    text-align: center;
+    width: 70%;
+}
+
+#params_table tr td:nth-child(2) {
+    background-color: #304fb5;
+    text-align: center;
+    width: 30%;
+}
+
+div#stats_container table tr td {
+    padding: 5px 0;
+}
+
+div#stats_container #params_table tr td:first-child,
+#stats_table thead tr th {
+    font-family: 'ubuntu-bold';
+}
+
+div#stats_container #stats_table {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5px;
+}
+
+#stats_table, #params_table, #probs_codes_table {
+    border-collapse: collapse;
+}
+
+#stats_table thead tr:first-child th {
+    background-color: #01172F;
+}
+
+#stats_table thead tr:nth-child(2) th {
+    background-color: #182a66;
+}
+
+#stats_table thead tr th {
+    padding: 6px 0;
+}
+
+#stats_table tbody tr td {
+    padding: 4px 0;
+    text-align: center;
+    font-family: 'ubuntu-light';
+    background-color: #304fb5;
+}
+
+/* 
+    Stopka
+*/
+
+footer {
+    background-color: #0c1635;
+    text-align: center;
+    border-top: white solid 2px;
+    padding: 5px 0;
+    font-size: 0.9em;
+}
+
+footer span#authors {
+    font-family: 'ubuntu-bold';
+}
+
+@media all and (min-height: 800px) {
+    footer {
+        position: absolute;
+        width: 70%;
+        bottom: 0;
+    }
+}
