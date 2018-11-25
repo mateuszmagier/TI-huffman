@@ -5,119 +5,128 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Kodowanie Huffmana</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <script src="js/huffman.js" type="text/javascript"></script>
-        <script src="js/angular.min.js" type="text/javascript"></script>
-        <script src="js/app.js" type="text/javascript"></script>
-    </head>
-    <body>
-        <div ng-app="APP" id="main-container">
-            <div ng-controller="Controller">
-                <header>
-                    Kodowanie Huffmana
-                </header>
-                <div id="data_container">
-                    <h3>Wprowadź tekst:</h3>
-                    <textarea ng-change="processData()"
-                              rows="10"
-                              ng-model="text_data">
+
+<head>
+    <title>Kodowanie Huffmana</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/huffman.js" type="text/javascript"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129778287-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129778287-1');
+    </script>
+</head>
+
+<body>
+    <div ng-app="APP" id="main-container">
+        <div ng-controller="Controller">
+            <header>
+                Kodowanie Huffmana
+            </header>
+            <div id="data_container">
+                <h3>Wprowadź tekst:</h3>
+                <textarea ng-change="processData()" rows="10" ng-model="text_data">
                     </textarea>
-                </div>
-                <div id="stats_container">
-                    <h3>Statystyki:</h3>
-                    <table id="params_table">
-                        <tr>
-                            <td>
-                                Wartość entropii:
-                            </td>
-                            <td>
-                                <span>{{entropy | number:5}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Średnia długość słowa kodowego:
-                            </td>
-                            <td>
-                                <span>{{avg_length | number:5}}</span>
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="stats_table">
-                        <thead>
-                            <tr>
-                                <th colspan="2">Dane wejściowe</th>
-                                <th colspan="2">Dane wyjściowe</th>
-                                <th colspan="2">Kompresja</th>
-                            </tr>
-                            <tr>
-                                <th>[b]</th>
-                                <th>[B]</th>
-                                <th>[b]</th>
-                                <th>[B]</th>
-                                <th>bitów</th>
-                                <th>bajtów</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{text_bits}}</td>
-                                <td>{{text_bytes}}</td>
-                                <td>{{code_bits}}</td>
-                                <td>{{code_bytes}}</td>
-                                <td>{{comp_bits | number:2}} %</td>
-                                <td>{{comp_bytes | number:2}} %</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="probs_codes_container">
-                    <h3>Prawdopodobieństwa i kody:</h3>
-                    <table id="probs_codes_table">
-                        <thead>
-                            <tr>
-                                <th ng-click="sortBy('sign')" class="column-1">
-                                    ZNAK
-                                    <span class="sortorder" ng-show="sortProperty === 'sign'" ng-class="{reverse: reverse}"></span>
-                                </th>
-                                <th ng-click="sortBy('number')" class="column-2">
-                                    PRAWDOPODOBIEŃSTWO
-                                    <span class="sortorder" ng-show="sortProperty === 'number'" ng-class="{reverse: reverse}"></span>
-                                </th>
-                                <th ng-click="sortBy('code')" class="column-3">
-                                    KOD
-                                    <span class="sortorder" ng-show="sortProperty === 'code'" ng-class="{reverse: reverse}"></span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="elem in probs_codes_array | orderBy:sortProperty:reverse"
-                                ng-click="markSign(elem.sign)"
-                                ng-class="getRowClass(elem.sign)">
-                                <td class="sign column-1">{{elem.sign}}</td>
-                                <td class="number column-2">{{elem.number}}/<span ng-bind="text_length"></span></td>
-                                <td class="code column-3">{{elem.code}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="data_container2">
-                    <h3>Tekst:</h3>
-                    <span ng-repeat="elem in text_array track by $index"><span ng-bind="elem" ng-class="getSignClass(elem)"></span></span>
-                </div>
-                <div id="encoded_data_container">
-                    <h3>Tekst zakodowany:</h3>
-                    <span ng-repeat="elem in encoded_text_array track by $index"><span ng-bind="elem.code" ng-class="getClass(elem.sign)"></span></span>
-                </div>
-                <footer>
-                    Aplikacja wykonana w ramach przedmiotu 'Laboratorium teleinformatyki'<br/>
-                    Autor: <span id="authors">Magier Mateusz (IMST 1.2.3)</span>
-                </footer>
             </div>
+            <div id="stats_container">
+                <h3>Statystyki:</h3>
+                <table id="params_table">
+                    <tr>
+                        <td>
+                            Wartość entropii:
+                        </td>
+                        <td>
+                            <span>{{entropy | number:5}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Średnia długość słowa kodowego:
+                        </td>
+                        <td>
+                            <span>{{avg_length | number:5}}</span>
+                        </td>
+                    </tr>
+                </table>
+                <table id="stats_table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Dane wejściowe</th>
+                            <th colspan="2">Dane wyjściowe</th>
+                            <th colspan="2">Kompresja</th>
+                        </tr>
+                        <tr>
+                            <th>[b]</th>
+                            <th>[B]</th>
+                            <th>[b]</th>
+                            <th>[B]</th>
+                            <th>bitów</th>
+                            <th>bajtów</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{text_bits}}</td>
+                            <td>{{text_bytes}}</td>
+                            <td>{{code_bits}}</td>
+                            <td>{{code_bytes}}</td>
+                            <td>{{comp_bits | number:2}} %</td>
+                            <td>{{comp_bytes | number:2}} %</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="probs_codes_container">
+                <h3>Prawdopodobieństwa i kody:</h3>
+                <table id="probs_codes_table">
+                    <thead>
+                        <tr>
+                            <th ng-click="sortBy('sign')" class="column-1">
+                                ZNAK
+                                <span class="sortorder" ng-show="sortProperty === 'sign'" ng-class="{reverse: reverse}"></span>
+                            </th>
+                            <th ng-click="sortBy('number')" class="column-2">
+                                PRAWDOPODOBIEŃSTWO
+                                <span class="sortorder" ng-show="sortProperty === 'number'" ng-class="{reverse: reverse}"></span>
+                            </th>
+                            <th ng-click="sortBy('code')" class="column-3">
+                                KOD
+                                <span class="sortorder" ng-show="sortProperty === 'code'" ng-class="{reverse: reverse}"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="elem in probs_codes_array | orderBy:sortProperty:reverse" ng-click="markSign(elem.sign)"
+                            ng-class="getRowClass(elem.sign)">
+                            <td class="sign column-1">{{elem.sign}}</td>
+                            <td class="number column-2">{{elem.number}}/<span ng-bind="text_length"></span></td>
+                            <td class="code column-3">{{elem.code}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="data_container2">
+                <h3>Tekst:</h3>
+                <span ng-repeat="elem in text_array track by $index"><span ng-bind="elem" ng-class="getSignClass(elem)"></span></span>
+            </div>
+            <div id="encoded_data_container">
+                <h3>Tekst zakodowany:</h3>
+                <span ng-repeat="elem in encoded_text_array track by $index"><span ng-bind="elem.code" ng-class="getClass(elem.sign)"></span></span>
+            </div>
+            <footer>
+                Aplikacja wykonana w ramach przedmiotu 'Laboratorium teleinformatyki'<br />
+                Autor: <span id="authors">Magier Mateusz (IMST 1.2.3)</span>
+            </footer>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
